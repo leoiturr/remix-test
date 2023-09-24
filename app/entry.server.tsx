@@ -32,7 +32,12 @@ export default async function handleRequest(
     await body.allReady;
   }
 
-  responseHeaders.set("Content-Type", "text/html");
+  responseHeaders.set("Content-Type", "text/html; charset=UTF-8");
+  responseHeaders.set("X-Content-Options", "nosniff");
+  responseHeaders.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  responseHeaders.set("X-Frame-Options", "DENY");
+
+
   return new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode,
